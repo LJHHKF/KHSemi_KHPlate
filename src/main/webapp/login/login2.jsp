@@ -3,11 +3,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>로그인 페이지</title>
+    <title>Document</title>
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <link rel="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
@@ -128,14 +129,14 @@
 
 
 
-        a {
-            text-decoration: none;
-        }
-
         #searchid {
             color: black;
-            margin-left: 660px;
+            margin-left: 620px;
             margin-top: 150px;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            background-color: transparent;
         }
 
         #searchid.hover {
@@ -144,8 +145,15 @@
 
         #searchpw {
             color: black;
-            margin-left: 860px;
-            margin-top: -25px;
+            margin-left: 830px;
+            margin-top: -35px;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            background-color: transparent;
+            position: relative;
+            top:-23px;
+
         }
 
         #searchpw.hover {
@@ -154,8 +162,14 @@
 
         #signup {
             color: black;
-            margin-left: 1070px;
+            margin-left: 1050px;
             margin-top: -24px;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            background-color: transparent;
+            position: relative;
+            top:-48px;
         }
 
         #signup.hover {
@@ -192,15 +206,16 @@
 
         }
 
-        #kakaobtn2 img{
+        #kakaobtn2 img {
             width: 220px;
             height: 57px;
             margin-left: 837px;
             margin-top: -83px;
             position: relative;
-            top:-23px;
+            top: -23px;
         }
-/* 
+
+        /* 
         #KakaoLogin {
             width: 248px;
             height: 50px;
@@ -255,7 +270,7 @@
                 <!-- <button name="KakaoLI" id="KakaoLogin">Kakao Login</button> -->
 
 
-                <div id ="kakaobtn2" onclick="kakaoLogin();">
+                <div id="kakaobtn2" onclick="kakaoLogin();">
                     <a href="javascript:void(0)">
                         <span><img src="kakao.png"></span>
                     </a>
@@ -263,24 +278,45 @@
 
             </fieldset>
 
-            <div id="searchid"><a
-                    href="https://search.naver.com/search.naver?where=nexearch&sm=top_sug.pre&fbm=0&acr=1&acq=%EC%84%9D%EA%B3%84+%EB%A7%A4%EC%9A%B4&qdt=0&ie=utf8&query=%EC%84%9D%EA%B3%84+%EB%A7%A4%EC%9A%B4%EC%A1%B1%EB%B0%9C">아이디
-                    찾기</a></div>
-            <div id="searchpw"><a href="http://www.naver.com">비밀번호 찾기</a></div>
-            <div id="signup"><a href="/signup.html">회원 가입</a></div>
+            <div>
+                <input type="button" value="아이디 찾기" id="searchid">
+            </div>
+            <div>
+                <input type="button" value="비밀번호 찾기" id="searchpw">
+            </div>
+            <div> 
+                <input type="button" value="회원가입" id="signup">
+            </div>
 
 
-            <!-- <a href="http://www.daum.net">
-                <img src="kakao.png" width="100%" height="100%">
-            </a> -->
 
-           
-             
-           
+
+
 
         </form>
     </div>
+  
+			
+    
+    
     <script>
+    
+	$("#searchid").on("click", function() {
+		window.open("/memberSearch/idsearch.jsp","","width=480px,height=550px");
+		
+	})
+
+	
+		$("#searchpw").on("click", function() {
+			window.open("/memberSearch/pwsearch.jsp","","width=480px,height=550px");
+			
+		
+	})
+		$("#signup").on("click", function() {
+		
+		location.href = "/joinform/joinform.jsp";
+	})
+    
 
         $(function () {
             // 눈표시 클릭 시 패스워드 보이기
@@ -358,7 +394,11 @@
             return unescape(cookieValue);
         }
 
-
+        $("#idsearch").on(
+            "click", function () {
+                window.open("/IdCheck.members?id=" + $("#id").val(), "",
+                    "width=400px, height=300px");
+            });
 
 
 

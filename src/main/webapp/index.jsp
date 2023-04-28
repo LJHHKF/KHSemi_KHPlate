@@ -22,10 +22,13 @@
 	<br>
 	<a href="/joinform/joinform.jsp">joinform.jsp</a>
 	<br>
+	<a href="/login/login.jsp">login</a><br>
+	
 	<a href="/login/kakaologin.html">kakaologin.html</a>
 	<a href="/login/loginbox.html">loginbox</a>
 	<a href="/login/navercallback.jsp">navercallback</a>
 	<a href="/login/naverlogin.jsp">naverlogin</a>
+	<a href="/login/googleemail.jsp">googleemail</a>
 	<br>
 	<a href="/memberout/memberout.html">memberout.html</a>	
 	<br>
