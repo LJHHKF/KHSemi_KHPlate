@@ -182,7 +182,7 @@ public class MembersDAO {
 		}
 
 	}
-	
+
 	// 비밀번호 검사 후 로그인 적용
 	// 일치하지 않을 경우 PW가 틀렸다고 사용자에게 표시
 	public boolean isPwExist(String id, String pw) throws Exception {
@@ -195,7 +195,7 @@ public class MembersDAO {
 			}
 		}
 	}
-	
+
 	public int getUserno(String id) throws Exception {
 		String sql = "select userno from members where userid = ?";
 		try (Connection con = this.getConnection(); PreparedStatement ppst = con.prepareStatement(sql);) {
@@ -206,16 +206,16 @@ public class MembersDAO {
 			}
 		}
 	}
-	
-	
+
+
 	// 이메일 인증 부분입니다.
 	// 이메일 인증 시 해당 유저가 있는 지 검사
 	public String getUserEmailVerified(String code) throws Exception{
 		String sql = "select * from members";
 		try
 		(Connection con = this.getConnection();
-		PreparedStatement pstat= con.prepareStatement(sql);
-		ResultSet rs = pstat.executeQuery();){
+				PreparedStatement pstat= con.prepareStatement(sql);
+				ResultSet rs = pstat.executeQuery();){
 			while(rs.next()) {
 				String email = rs.getString("email");
 				if(SecurityUtils.sha512(email).equals(code)) {
@@ -225,17 +225,74 @@ public class MembersDAO {
 			return "";
 		}
 	}
-	
+
 	// 이메일 인증 후 해당 유저의 userEmailChecked 를 y값으로 변경
 	public int updateuserEmailChecked(int userno) throws Exception{
 		String sql = "update members set userEmailChecked = 'y' where userno = ?";
 		try
 		(Connection con = this.getConnection();
-		PreparedStatement pstat= con.prepareStatement(sql);){
+				PreparedStatement pstat= con.prepareStatement(sql);){
 			pstat.setInt(1, userno);
 			int result = pstat.executeUpdate();
 			con.commit();
 			return result;
 		}
 	}
-}
+
+	public String idsearch(String name, String email, String classes) throws Exception{
+		String sql = "select userid from members where name = ? and email = ? and classes=? ";
+		try (Connection con = this.getConnection(); PreparedStatement pstat = con.prepareStatement(sql);) {
+			pstat.setString(1, name);
+			pstat.setString(2, email);
+			pstat.setString(3, classes);
+
+			ResultSet rs = pstat.executeQuery(); {
+
+				if(rs.next()) {
+					String result = rs.getString("userid");
+					return result;
+				}else {
+					return null;
+				}
+			}		
+		}
+	}
+	
+	public String pwsearch(String pwname, String pwemail,String pwid)throws Exception{
+		String sql = "select userid from members where userid = ? and name = ? and email=?";
+		try (Connection con = this.getConnection(); PreparedStatement pstat = con.prepareStatement(sql);) {
+			pstat.setString(1, pwid);
+			pstat.setString(2, pwname);
+			pstat.setString(3, pwemail);
+
+			
+			try (ResultSet rs = pstat.executeQuery()) {
+				if(rs.next()) {
+					String result = rs.getString("userid");
+					return result;
+				}else return null;
+			}
+		}
+	}
+
+	public int updatepw(String pw1 ,String userid) throws Exception{
+			String sql = "update members set pw=? where userid=?";
+			try
+			(Connection con = this.getConnection();
+					PreparedStatement pstat= con.prepareStatement(sql);){
+				pstat.setString(1, pw1);
+				pstat.setString(2,userid );
+				int result = pstat.executeUpdate();
+				con.commit();
+				return result;
+			
+		}
+
+	}
+
+		
+	}
+	
+	
+
+

@@ -229,11 +229,20 @@ h4 {
   box-shadow: 0 8px 24px 0 rgba(16,39,112,.2);
 }
 
+#pwCheck{
+	margin-top:25px;
+
+	 height:35px;
+}
+
+
+
+
 </style>
 
 
 <body>
-	<form id="frm" action="" method="post">
+	<form id="frm" action="/newpwset.members" method="post">
 	  <div class="section">
 		<div class="container">
 		  <div class="row full-height justify-content-center">
@@ -246,12 +255,16 @@ h4 {
 						<div class="section text-center">
 						  <h4 class="mb-4 pb-3">비밀번호 재발급</h4>
 						  <div class="form-group">
+						  	<input type="text" name="userid" style="display:none" value=${userid} >
 							<input type="password" name="pw1" class="form-style" id="pw1" placeholder="새로운 비밀번호 입력" autocomplete="off"> 
 						  </div>  
 						  <div class="form-group mt-2">
 							<input type="password" id="pw2" name="pw2" class="form-style" placeholder="비밀번호 재입력" autocomplete="off">
+							<div id=pwCheck></div>
 						  </div>
-						  <a href="#" class="btn mt-4">제출하기</a>
+						  
+						  <input type="submit" value = 제출하기 class="btn mt-4 value=제출하기 id="passwordcheck">
+
 							</div>
 						  </div>
 						</div>
@@ -290,8 +303,8 @@ h4 {
             "submit",
             function () {
                 //입력 형식 제한
-
-
+				
+					
                 var regexPW = /^[A-Za-z0-9]{7,13}$/;
 
 
