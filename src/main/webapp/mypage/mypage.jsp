@@ -790,7 +790,7 @@ td {
             $("#memberoutBtn").css("display","none");
             $("#modiCancelBtn").css("display", "inline-block");
             $("#modiComBtn").css("display", "inline-block");
-            $(".inputcss").not("#id,#name").removeAttr("readonly");
+            $(".inputcss").not("#id,#name,#email").removeAttr("readonly");
             $("#profileImageChangebtn").css("display","inline-block");
             $("#btn_image_add").css("display","inline-block");
         })
@@ -1038,10 +1038,22 @@ td {
 	
     $("#updateForm").on("submit", function () { //수정 regex
     	
-    	let regexName = /^[가-힣]+$/;
-        let regexEmail = /.+@.+\..+/;
+    	
+    	
+    	
         let name = $("#name").val();
         let email = $("#email").val();
+		let nickName = $("#nickname").val();
+		let selfcomment = $("#selfcomment").val();
+		let favoriteFood = $("#favoriteFood").val();
+        
+    	let regexName = /^[가-힣]+$/;
+        let regexEmail = /.+@.+\..+{30}/;
+    	let regexNickName = /.{20}/;
+    	let regexSelfComment = /.{30}/;
+    	let regexFavoriteFood = /.{20}/;
+        
+        
         if (name == "") {
         	alert("이름을 입력해주세요.");
             return false;       	
@@ -1065,6 +1077,32 @@ td {
             alert("이메일 형식이 잘못됐습니다.");
             return false;
         } 
+        
+        let result3 = regexNickName.test(nickName);
+        if (!result3) {
+            alert("닉네임 형식이 잘못됐습니다.");
+            return false;
+        } 
+        
+        let result4 = regexSelfComment.test(selfcomment);
+        if (!result4) {
+            alert("한줄소개 형식이 잘못됐습니다.");
+            return false;
+        } 
+        
+        let result5 = regexFavoriteFood.test(favoriteFood);
+        if (!result5) {
+            alert("최애음식 형식이 잘못됐습니다.");
+            return false;
+        } 
+        
+        
+        
+        
+        
+        
+        
+        
         
         let updateForm = $("#updateForm").serialize();
         $.ajax({
