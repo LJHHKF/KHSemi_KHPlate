@@ -1053,7 +1053,7 @@ td {
 		let favoriteFood = $("#favoriteFood").val();
         
     	let regexName = /^[가-힣]+$/;
-        let regexEmail = /.+@.+\..+{30}/;
+        let regexEmail = /^(?=.{1,30}$)[^@\s]+@[^@\s]+\.[^@\s]+$/;
     	let regexNickName = /.{20}/;
     	let regexSelfComment = /.{30}/;
     	let regexFavoriteFood = /.{20}/;
