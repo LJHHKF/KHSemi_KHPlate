@@ -123,7 +123,7 @@
 }
 #printToStoreList{
 	display:flex;
-	justify-content:center;
+	justify-content:space-evenly;
 }
 
 .cardBox{

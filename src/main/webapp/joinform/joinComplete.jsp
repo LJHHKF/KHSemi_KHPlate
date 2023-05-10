@@ -208,7 +208,6 @@ text-align: center;
    #TITLE
    ========================================================================== */
 .title {
-	text-transform: uppercase;
 	font-weight: 700;
 	margin-bottom: 35px;
 }
