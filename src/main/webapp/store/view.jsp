@@ -652,7 +652,7 @@
                                                 btn_cancel_body.click(function () {
                                                    location.reload();
                                                    // $(btn_modify + "," + readStar).removeClass("nonactive");
-                                                   // $(btn_modify).addClass("btn").addClass("greenBtn");
+                                                   // $(btn_modify).addClass("greenBtn");
                                                    // $(btn_delete + "," + btn_confirm + "," + btn_cancel).removeClass("greenBtn");
                                                    // $(btn_confirm + "," + btn_cancel + "," + writeStar + "," + btn_delete).addClass("nonactive");
                                                    // editor.enableReadOnlyMode("");
