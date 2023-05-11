@@ -650,11 +650,12 @@
                                                 btn_cancel_body.addClass("greenBtn");
                                                 btn_cancel_body.text("취소");
                                                 btn_cancel_body.click(function () {
-                                                   $(btn_modify + "," + readStar).removeClass("nonactive");
-                                                   $(btn_modify).addClass("btn").addClass("greenBtn");
-                                                   $(btn_delete + "," + btn_confirm + "," + btn_cancel).removeClass("greenBtn");
-                                                   $(btn_confirm + "," + btn_cancel + "," + writeStar + "," + btn_delete).addClass("nonactive");
-                                                   editor.enableReadOnlyMode("");
+                                                   location.reload();
+                                                   // $(btn_modify + "," + readStar).removeClass("nonactive");
+                                                   // $(btn_modify).addClass("btn").addClass("greenBtn");
+                                                   // $(btn_delete + "," + btn_confirm + "," + btn_cancel).removeClass("greenBtn");
+                                                   // $(btn_confirm + "," + btn_cancel + "," + writeStar + "," + btn_delete).addClass("nonactive");
+                                                   // editor.enableReadOnlyMode("");
                                                 });
 
                                                 $(replyControl).prepend(btn_confirm_body);
