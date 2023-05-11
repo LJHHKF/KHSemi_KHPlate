@@ -625,7 +625,6 @@
                                           });
 
                                           $(btn_modify).click(function () {
-                                             console.log($(btn_confirm));
                                              if (!($(btn_confirm).length > 0)) {
                                                 let btn_confirm_body = $("<button>");
                                                 let btn_cancel_body = $("<button>");
