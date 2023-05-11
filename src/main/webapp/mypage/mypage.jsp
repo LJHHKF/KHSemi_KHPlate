@@ -1054,9 +1054,9 @@ td {
         
     	let regexName = /^[가-힣]+$/;
         let regexEmail = /^(?=.{1,30}$)[^@\s]+@[^@\s]+\.[^@\s]+$/;
-    	let regexNickName = /.{20}/;
-    	let regexSelfComment = /.{30}/;
-    	let regexFavoriteFood = /.{20}/;
+    	let regexNickName = /.{0,20}/;
+    	let regexSelfComment = /.{0,30}/;
+    	let regexFavoriteFood = /.{0,20}/;
         
         
         if (name == "") {
