@@ -16,7 +16,7 @@
                integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
                crossorigin="anonymous"></script>
             <script type="text/javascript"
-               src="//dapi.kakao.com/v2/maps/sdk.js?appkey=714989160c4bbb672f636a880c6c8328"></script>
+               src="//dapi.kakao.com/v2/maps/sdk.js?appkey=714989160c4bbb672f636a880c6c8328&libraries=services"></script>
             <script src="https://cdn.ckeditor.com/ckeditor5/37.0.1/classic/ckeditor.js"></script>
 
             <style>
@@ -973,7 +973,14 @@
                            level: 3
                         };
                         let map = new kakao.maps.Map(mapContainer, options);
-
+                        
+                        let geocoder = new kakao.maps.services.Geocoder();
+                        
+                        function searchDetailAddrFromCoords(coords, callback) {
+                            // 좌표로 법정동 상세 주소 정보를 요청합니다
+                            geocoder.coord2Address(coords.getLng(), coords.getLat(), callback);
+                        }
+                        
                         // 학원 마커 이미지 등록
                         var imageSrc = '/allstore_inquiry/khplate_marker.png', // 마커이미지의 주소입니다    
                            imageSize = new kakao.maps.Size(74, 79), // 마커이미지의 크기입니다
@@ -1018,6 +1025,14 @@
                               let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
                               let d = 6371 * c;
                               $("input[name=mapDistance]").val(Math.round(d * 1000));
+                              searchDetailAddrFromCoords(e.latLng, function(result, status){
+                              	if(status == kakao.maps.services.Status.OK){
+                              		//도로명 주소 있으면 도로명, 없으면 지번 주소 
+                              		let detailAddr = !!result[0].road_address ? result[0].road_address.address_name : result[0].address.address_name;
+                              		
+                              		$("input[name='address']").val(detailAddr);
+                              	}
+                              });
                            }
                         });
                      </script>
